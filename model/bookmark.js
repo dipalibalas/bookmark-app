@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bookMarkSchema = new mongoose.Schema(
+const bookmarkSchema = new mongoose.Schema(
   {
     url: {
       type: String,
@@ -13,4 +13,4 @@ const bookMarkSchema = new mongoose.Schema(
   { timestamps: { createdAt: "created_at" } }
 );
 
-module.exports = BookMark = mongoose.model("BookMark", bookMarkSchema);
+module.exports = Bookmark = mongoose.model("Bookmark", bookmarkSchema);

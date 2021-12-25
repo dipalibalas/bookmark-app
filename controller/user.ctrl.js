@@ -19,7 +19,7 @@ const signup = async (req, res) => {
       password: hashPassword,
     });
     await newUser.save();
-    return res.status(200).json({ message: "saved successfully" });
+    return res.status(200).json({ message: "User saved successfully" });
   } catch (err) {
     console.log("error: ", err);
     return res.status(422).json({ msg: err.message });
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(404).json({ error: "please add email or password" });
+      return res.status(404).json({ error: "Please add email or password" });
     }
 
     const user = await User.findOne({ email });
