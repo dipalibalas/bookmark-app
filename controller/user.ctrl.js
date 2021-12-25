@@ -8,7 +8,7 @@ const signup = async (req, res) => {
   try {
     const { firstName, lastName, email, phone, profile, password } = req.body;
     const user = await User.findOne({ email: email });
-    if (user) return res.status(400).json({ msg: "Email already exists" });
+    if (user) return res.status(400).json({ msg: "Email already exists." });
     const hashPassword = await bcrypt.hash(password, 12);
     const newUser = new User({
       firstName,
@@ -19,7 +19,7 @@ const signup = async (req, res) => {
       password: hashPassword,
     });
     await newUser.save();
-    return res.status(200).json({ message: "User saved successfully" });
+    return res.status(200).json({ message: "User saved successfully." });
   } catch (err) {
     console.log("error: ", err);
     return res.status(422).json({ msg: err.message });
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(404).json({ error: "Please add email or password" });
+      return res.status(404).json({ error: "Please add email or password." });
     }
 
     const user = await User.findOne({ email });
@@ -50,7 +50,7 @@ const login = async (req, res) => {
         user: { _id, firstName, lastName, email, phone, profile },
       });
     } else {
-      return res.status(404).json({ error: "Invalid Email or Password" });
+      return res.status(404).json({ error: "Invalid email or password." });
     }
   } catch (err) {
     console.log("error: ", err);
@@ -62,7 +62,7 @@ const updateDetails = async (req, res) => {
   try {
     const { firstName, lastName, email, phone, profile } = req.body;
     if (!profile)
-      return res.status(400).json({ msg: "No profile image uploaded" });
+      return res.status(400).json({ msg: "No profile image uploaded." });
 
     await User.findOneAndUpdate(
       { email: req.body.email },
@@ -74,7 +74,7 @@ const updateDetails = async (req, res) => {
       }
     );
 
-    res.status(200).json({ msg: "User details successfully updated!!" });
+    res.status(200).json({ msg: "User details updated successfully." });
   } catch (err) {
     return res.status(422).json({ msg: err.message });
   }
