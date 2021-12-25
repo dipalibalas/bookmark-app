@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    firstname: {
+    firstName: {
       type: String,
       required: true,
     },
-    lastname: {
+    lastName: {
       type: String,
       required: true,
     },
@@ -24,12 +24,12 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    profilepic: {
+    profilePic: {
       type: String,
-      required: true,
+      //   required: true,
     },
   },
   { timestamps: { createdAt: "created_at" } }
 );
 
-mongoose.model("User", userSchema);
+module.exports = User = mongoose.model("User", userSchema);

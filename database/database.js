@@ -1,11 +1,11 @@
 //Import required pacakges
 const mongoose = require("mongoose");
 
-const { MONGOURI } = require("../key.js");
+const { MONGO_URI } = require("../key.js");
 
 // connect to mongoDB
 mongoose
-  .connect(MONGOURI, {
+  .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
