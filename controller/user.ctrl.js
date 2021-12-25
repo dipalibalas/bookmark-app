@@ -58,7 +58,30 @@ const login = async (req, res) => {
   }
 };
 
+const updateDetails = async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, profile } = req.body;
+    if (!profile)
+      return res.status(400).json({ msg: "No profile image uploaded" });
+
+    await User.findOneAndUpdate(
+      { email: req.body.email },
+      {
+        firstName,
+        lastName,
+        phone,
+        profile,
+      }
+    );
+
+    res.status(200).json({ msg: "User details successfully updated!!" });
+  } catch (err) {
+    return res.status(422).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   signup,
   login,
+  updateDetails,
 };
